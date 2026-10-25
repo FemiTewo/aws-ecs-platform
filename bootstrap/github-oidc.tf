@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "github_assume" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:FemiTewo/aws-ecs-platform:*"]
+      values   = ["repo:FemiTewo@94982178/aws-ecs-platform@1431829630:*"]
     }
   }
 }
@@ -39,3 +39,4 @@ resource "aws_iam_role_policy_attachment" "github_actions_admin" {
 output "github_actions_role_arn" {
   value = aws_iam_role.github_actions.arn
 }
+
