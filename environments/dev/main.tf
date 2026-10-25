@@ -29,3 +29,15 @@ module "vpc" {
 output "vpc_id" {
   value = module.vpc.vpc_id
 }
+
+module "ecs" {
+  source             = "../../modules/ecs"
+  name               = "ecs-platform-dev"
+  vpc_id             = module.vpc.vpc_id
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
+}
+
+output "app_url" {
+  value = "http://${module.ecs.alb_dns_name}"
+}
